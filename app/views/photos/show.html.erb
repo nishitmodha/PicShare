@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @photo.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @photo.description %>
+</p>
+
+<strong>By:</strong>
+<%= @photo.user.user_name %>
+
+<div>
+<%= image_tag @photo.user_photo %>
+</div>
+
+
+<%= link_to 'Edit', edit_photo_path(@photo) %> |
+<%= link_to 'Back', photos_path %>
+<%= link_to 'Delete', photo_path, class: "button", method: :delete, data: { confirm: 'Are you sure you want to delete this Photo?'} %>

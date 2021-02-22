@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Photos</h1>
+
+
+<section class="section">
+  <div class="photos">
+    <% @photos.each do |photo| %>
+      <%#= photo.title %>
+      <%#= photo.description %>
+      <%#= image_tag photo.user_photo.representation(resize_to_limit: [100, 100]) %>
+          <%= link_to photo, class: "photo" do %>
+          <%= image_tag photo.user_photo.variant(resize_to_limit: [200, 200]) if photo.user_photo.attached?  %>
+          <div class="photo-data">
+            <h3 class="photo-title"><%= photo.title %></h3>
+            <div class="photo-description"><%= truncate(photo.description, length: 60) %></div>
+            <div class="photo-time">
+              <%= time_ago_in_words(photo.created_at) %>
+            </div>
+          </div>
+        <% end %>
+    <% end %>
+</section>
+
+
+<br>
+
+<%= link_to 'New Photo', new_photo_path, class: "btn btn-primary" %>
+
+
+
