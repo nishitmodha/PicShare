@@ -1,0 +1,9 @@
+<p>
+<strong><%= comment.user.user_name %></strong>
+<div><%= comment.message %></div>
+</p>
+
+
+<% if user_signed_in?  && current_user.id == comment.user_id %>
+    <%= link_to 'Delete', [comment.photo, comment], method: :delete, data: {confirm: 'Delete this?' }  %>
+<% end %>

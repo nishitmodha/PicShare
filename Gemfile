@@ -29,6 +29,8 @@ gem 'simple_form', '~> 5.1'
 gem 'bootstrap', '~> 4.6'
 gem 'jquery-rails', '~> 4.4'
 gem 'devise', '~> 4.7', '>= 4.7.3'
+gem 'impressionist', '~> 2.0'
+gem 'acts_as_votable', '~> 0.13.1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

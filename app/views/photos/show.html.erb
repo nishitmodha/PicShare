@@ -14,8 +14,29 @@
 <%= @photo.user.user_name %>
 
 <div>
-<%= image_tag @photo.user_photo %>
+<%= image_tag @photo.user_photo.variant(resize_to_limit: [200, 200]) if @photo.user_photo.attached?  %>
 </div>
+
+    <% if user_signed_in? %>
+
+        <%  if current_user.liked? @photo %>
+          <%= link_to 'Unlike', unlike_photo_path(@photo), method: :put  %>
+        <% else %>
+          <%= link_to 'Like', like_photo_path(@photo), method: :put  %>
+        <% end %>
+        
+    <% end %>
+
+
+<p> <%= pluralize(@photo.comments.count, 'Comment') %> </p>
+<p> <%= pluralize(@photo.impressionist_count, 'View') %>  </p>
+
+
+
+
+<%= render @photo.comments %>
+<%= render 'comments/form' %>
+
 
 
 <%= link_to 'Edit', edit_photo_path(@photo) %> |

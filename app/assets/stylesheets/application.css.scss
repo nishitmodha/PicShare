@@ -15,51 +15,39 @@
  */
 @import "bootstrap";
 
-.photos {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-gap: 1rem;
-	@media only screen and (min-width: 1600px) {
-		grid-template-columns: repeat(6, 1fr);
-	}
-	@media only screen and (max-width: 1300px) {
-		grid-template-columns: repeat(4, 1fr);
-	}
-	@media only screen and (max-width: 1100px) { 
-		grid-template-columns: repeat(3, 1fr);
-	}
-	@media only screen and (max-width: 800px) {
-		grid-template-columns: 1fr 1fr;
-	}
-	@media only screen and (max-width: 400px) {
-		grid-template-columns: 1fr;
-	}
-}
+// .photos {
+// 	display: grid;
+// 	grid-template-columns: repeat(5, 1fr);
+// 	grid-gap: 1rem;
+// 	@media only screen and (min-width: 1600px) {
+// 		grid-template-columns: repeat(6, 1fr);
+// 	}
+// 	@media only screen and (max-width: 1300px) {
+// 		grid-template-columns: repeat(4, 1fr);
+// 	}
+// 	@media only screen and (max-width: 1100px) { 
+// 		grid-template-columns: repeat(3, 1fr);
+// 	}
+// 	@media only screen and (max-width: 800px) {
+// 		grid-template-columns: 1fr 1fr;
+// 	}
+// 	@media only screen and (max-width: 400px) {
+// 		grid-template-columns: 1fr;
+// 	}
+// }
 
-.photo {
-	position: relative;
-	display: block;
-	color: #333 !important;
 
-	// .photo-data {
-	// 	display: none;
-	// 	position: absolute;
-	// 	top: 0;
-	// 	right: 0;
-	// 	bottom: 0;
-	// 	left: 0;
-	// 	padding: 10px;
-	// 	background: rgba(white, .9);
-	// 	cursor: pointer;
-	// 	.photo-title {
-	// 		font-weight: bold;
-	// 	}
-	// 	.photo-description {
-	// 		font-size: .9rem;
-	// 	}
-	// 	.photo-time {
-	// 		font-size: .8rem;
-	// 		padding-top: .5rem;
-	// 	}
-	// }
-}
+// 	.photo-data {
+// 		display: none;
+// 		position: absolute;
+// 		top: 0;
+// 		right: 0;
+// 		bottom: 0;
+// 		left: 0;
+// 		padding: 10px;
+// 		background: rgba(white, .9);
+// 		cursor: pointer;
+
+	
+// }
+

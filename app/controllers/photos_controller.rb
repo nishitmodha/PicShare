@@ -1,7 +1,8 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_photo, only: [:show, :edit, :update, :destroy, :like, :unlike]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :like, :unlike]
   before_action :auth, only: [:edit, :update, :destroy]
+  impressionist actions: [:show], unique: [:impressionable_type, :impressionable_id, :session_hash]
 
   # GET /photos or /photos.json
   def index
@@ -55,6 +56,20 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to photos_url, notice: "Photo was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def like
+    @photo.liked_by current_user
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
+    end
+  end
+
+  def unlike
+    @photo.unliked_by current_user
+    respond_to do |format|
+      format.html { redirect_back fallback_location: root_path }
     end
   end
 
