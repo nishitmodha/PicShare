@@ -1,35 +1,85 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @photo.title %>
-</p>
+<div class="container">
+  <div class="row">
 
-<p>
-  <strong>Description:</strong>
-  <%= @photo.description %>
-</p>
+    <div class="col">
+      
+        <section>
 
-<strong>By:</strong>
-<%= @photo.user.user_name %>
+        <p>
+          <strong>Title:</strong>
+          <%= @photo.title %>
+        </p>
 
-<div>
-<%= image_tag @photo.user_photo.variant(resize_to_limit: [200, 200]) if @photo.user_photo.attached?  %>
+        <p>
+          <strong>Description:</strong>
+          <%= @photo.description %>
+        </p>
+
+        <strong>By:</strong>
+        <%= @photo.user.user_name %>
+
+        <div>
+        <%= image_tag @photo.user_photo.variant(resize_to_limit: [400, 800]) if @photo.user_photo.attached?  %>
+        </div>
+
+        </section>
+    </div>
+
+    <div class="col">
+      <br/> <br/> <br/> <br/> <br/> <br/>
+        <section>
+        <div>
+
+                        <% if user_signed_in? %>
+
+                          <% if current_user.liked? @photo %>
+                            <%= link_to unlike_photo_path(@photo), method: :put, class: "unlike_photo" do %>
+                              <span class="icon"><i class="fa fa-heart has-text-primary"></i></span>
+                              <span class="vote_count"><%= @photo.get_likes.size %></span>
+                            <% end %>
+                          <% else %>
+                            <%= link_to like_photo_path(@photo), method: :put, class: "like_photo" do %>
+                              <span class="icon"><i class="fa fa-heart"></i></span>
+                              <span class="vote_count"><%= @photo.get_likes.size %></span>
+                            <% end %>
+                          <% end %>
+
+                        <% else %>
+                            <%= link_to like_photo_path(@photo), method: :put, class: "like_photo" do %>
+                              <span class="icon"><i class="fa fa-heart"></i></span>
+                              <span class="vote_count"><%= @photo.get_likes.size %></span>
+                            <% end %>
+                        <% end %>
+
+                        </div>
+
+
+          <div>
+            <%= link_to @photo do %>
+              <span class="icon"><i class="fa fa-eye"></i></span>
+              <%=  @photo.impressionist_count %>
+            <% end %>
+          </div>
+
+          <div>
+            <%= link_to @photo do %>
+              <span class="icon"><i class="fa fa-comment"></i></span>
+                <%= @photo.comments.count %>
+            <% end %>
+          </div>
+
+          </section>
+    </div>
+    
+  </div>
 </div>
 
-    <% if user_signed_in? %>
-
-        <%  if current_user.liked? @photo %>
-          <%= link_to 'Unlike', unlike_photo_path(@photo), method: :put  %>
-        <% else %>
-          <%= link_to 'Like', like_photo_path(@photo), method: :put  %>
-        <% end %>
-        
-    <% end %>
 
 
-<p> <%= pluralize(@photo.comments.count, 'Comment') %> </p>
-<p> <%= pluralize(@photo.impressionist_count, 'View') %>  </p>
+
+
 
 
 
