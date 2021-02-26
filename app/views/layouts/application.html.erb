@@ -13,6 +13,21 @@
 
   <body>
     <%= render 'layouts/navbar' %>
+
+<% if flash[:notice] %>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <p class="notice"><%= notice %></p>
+</div>
+<% end %>
+
+<% if flash[:alert] %>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <p class="alert"><%= alert %></p>
+</div>
+<% end %>
+
+
+  
     <%= yield %>
   </body>
 </html>
