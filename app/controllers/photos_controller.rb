@@ -4,25 +4,20 @@ class PhotosController < ApplicationController
   before_action :auth, only: [:edit, :update, :destroy]
   impressionist actions: [:show], unique: [:impressionable_type, :impressionable_id, :session_hash]
 
-  
   def index
     @photos = Photo.all
   end
 
-  
   def show
   end
-
   
   def new
     @photo = current_user.photos.build
   end
-
   
   def edit
   end
 
-  
   def create
     @photo = current_user.photos.build(photo_params)
 
@@ -36,7 +31,6 @@ class PhotosController < ApplicationController
       end
     end
   end
-
   
   def update
     respond_to do |format|
@@ -49,7 +43,6 @@ class PhotosController < ApplicationController
       end
     end
   end
-
   
   def destroy
     @photo.destroy
@@ -86,7 +79,6 @@ class PhotosController < ApplicationController
         end
       end
     end
-
     
     def photo_params
       params.require(:photo).permit(:title, :description, :user_photo)
