@@ -1,9 +1,13 @@
-<p>
-<strong><%= comment.user.user_name %></strong>
-<div><%= comment.message %></div>
-</p>
+<div class="card">
+  <div class="card-header">
+    <strong><%= comment.user.user_name %></strong>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"> <%= comment.message %></h5>
+    <% if user_signed_in?  && current_user.id == comment.user_id %>
+        <%= link_to 'Delete', [comment.photo, comment], method: :delete, data: {confirm: 'Delete this?' }  %>
+    <% end %>
+  </div>
+</div>
+</div>
 
-
-<% if user_signed_in?  && current_user.id == comment.user_id %>
-    <%= link_to 'Delete', [comment.photo, comment], method: :delete, data: {confirm: 'Delete this?' }  %>
-<% end %>
