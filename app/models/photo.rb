@@ -7,5 +7,4 @@ class Photo < ApplicationRecord
     
     validates :title, presence: true
     validates :description, presence: true
-    validates :user_photo, presence: true
 end
