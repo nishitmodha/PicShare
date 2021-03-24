@@ -26,5 +26,11 @@ RSpec.describe @user, type: :model do
       user = build(:user)
       expect(user).to be_valid
     end
+    
+    describe "Associations" do
+      it { expect(@user).to have_many(:photos) }
+      it { expect(@user).to have_many(:comments) }
+    end
   end
+
 end
