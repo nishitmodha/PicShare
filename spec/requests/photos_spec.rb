@@ -4,10 +4,13 @@ include AuthHelper
 
 RSpec.describe "Photos", type: :request do
   let(:user) { create(:user) }
+  let(:photo) { create(:photo) }
+
   
   before(:each) do
     login_user
    end
+
   describe "GET /index" do
       it 'ensures index returns photos' do
         get photos_path
@@ -38,42 +41,30 @@ RSpec.describe "Photos", type: :request do
     end
   end
 
-  
-  describe 'PATCH #edit' do
-    # let :photo do
-    #   post "/photos", :params => { photo: attributes_for(:photo) }
-    # end
-    # it 'renders the edit page of photo' do
-    #   get "/photos/#{photo.id}/edit", params: { id: photo.id,
-    #                                              photo: attributes_for(:photo)}
-    
-    let(:photo) { create(:photo) }
-    it 'edits' do
-      get edit_photo_path(:photo)  
-      expect(response).to render_template :edit
+  describe 'GET Photo#Show' do
+    it 'renders show page' do
+      get photo_path(photo)
+      expect(response).to be_successful
+      expect(response).to render_template(:show)
     end
-    
   end
 
-  # describe 'Delete Photo#destroy' do
-  #   context 'with valid params' do
-  #     let(:delete_photo) do
-  #       delete photo_path(:photo)
-  #     end
+  describe "PUT /update/:id" do
+    context "with valid params" do
+      it "updates photo and redirects" do
+        put photo_path(photo), :params => { photo: attributes_for(:photo) }
+        expect(response).to be_redirect
+      end
+    end
+  end
 
-  #     it { expect { delete_photo }.to change(Photo, :count).by(1) }
-  #   end
-  # end
-
-  # describe 'Delete Photo#destroy' do
-  #   context 'Delete photo' do
-  #     it 'deletes stuff' do
-  #       delete photo_path(:photo)
-  #       expect (response).to redirect_to photos_url
-  #     end
-  #   end
-  # end
-
-
+  describe "DELETE /destroy/:id" do
+    context "with valid params" do
+      it "deletes photo and redirects" do
+        delete photo_path(photo)
+        expect(response).to be_redirect
+      end
+    end
+  end
 
 end
